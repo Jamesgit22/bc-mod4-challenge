@@ -1,0 +1,44 @@
+
+
+1. Load in a css reset sheet.
+
+
+2. Create a body and header in html.
+    - The header needs two containers (one button on the left to go to highscores that will navigate to a new page,
+                                        and the other will have a count down timer on the right of the screen.)
+
+
+3. Style the header
+    - Text color should be a purple.
+
+4. in html, create a conainer that is centered in the screen. 
+    - provide it an id name. (start-container)?
+    - insede I want to have a h2 element, a p element, and a start button.
+
+5. Once I click the start button, the start-container should hide away with display none and call to the javascript screen to start the quiz.
+
+6. In javascript, I then need to create a new div and maybe call it question-one-container. This will have the same style as the start container and the same width and distance from the top.
+    - make a CSS variable that will house the standard questions container values.
+
+7. In the question 1 container, I need an h3 element as the question and 4 buttons that have possible answers.
+    - In javascript, add listener events to each button and a function for question 1 that is called.
+    - In the function, check if the answer is correct. Make each question an object 
+                                example: let questionOne = {
+                                    name:questionOne
+                                    answerOne: (answer)
+                                    answerTwo: (answer)
+                                    answerThree: (answer)
+                                    answerFour: (answer)
+                                }
+
+    - If the answer the user chose is correct, the current question-one-container should hide away and call the next question with similar style.
+    - If the user selects the wrong choice, the global count clock should recieve a penalty of 10s. Then hide and move to next question.
+
+8. The last question answered should store the value of the global clock as a score and then hide the questions screen. It then needs to call a new 
+    div container that will let you submit your name and shows you your score.
+    - After you submit your score, You should be taken back to the begining of the quiz where you can take it again or view highscores.
+    - The submit button also needs to submit the users name and score to local storage for persitant browser memory. 
+    - It should also append the name and score to a new element in the highscores page.
+
+
+9. The highscores page which is hosted in another html file, needs to have a go back to quiz button and a clear scores button that will clear the local history.
