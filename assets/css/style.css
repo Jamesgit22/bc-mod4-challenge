@@ -1,0 +1,40 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(239, 241, 255);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 1em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header div a {
+    text-decoration: none;
+    color: purple;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    margin: 3em auto;
+    width: 40%;
+    text-align: center;
+}
+
+main h2 {
+    font-size: 30px;
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+
+.quiz-btn {
+    background-color: purple;
+    color: white;
+    border-radius: 0.5em;
+    border: 1px solid black;
+    cursor: pointer;
+    padding: 5px;
+    margin-top: 1.5em;
+}
