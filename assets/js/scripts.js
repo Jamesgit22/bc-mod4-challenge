@@ -5,6 +5,14 @@
 const startQuiz = document.getElementById("start-quiz-btn");
 const startCard = document.getElementById("start-card");
 
+const questionOneObject = {
+    name: "questionOne",
+    answerOne: "Place Holder One",
+    answerTwo: "place holder two",
+    answerThree: "place holder three",
+    answerFour: "correct answer"
+}
+
 
 // Now I can add a listener event.
 
@@ -16,13 +24,7 @@ function startfunction() {
     
     // Before getting to the logic portion, lets create an object that contains the info for question one.
 
-    // const questionOneObject = {
-    //     name:questionOneObject,
-    //     answerOne: "Place Holder One",
-    //     answerTwo: "place holder two",
-    //     answerThree: "place holder three",
-    //     answerFour: "correct answer"
-    // }
+   
 
 
     // First I will hide the start card
@@ -36,24 +38,56 @@ function startfunction() {
 
     // Lets append this new element to the html.
 
+    // Creating a visual line break in the code here for quik reference to each card
+
+
+
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@ CARD ONE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
     document.body.children[1].appendChild(questionOneCard);
 
     // Now lets give this new element some children to add content to.
     // Todo this, we first need to creat them and then we can add the content.
 
-    // let questionOneContainer = document.createElement("section");
     let questionOneQuestion = document.createElement('h2');
     let questionOneAnswers = document.createElement("ol");
-    let questionOneAnswerOne = document.createElement("li");
-    let questionOneAnswerTwo = document.createElement("li");
-    let questionOneAnswerThree = document.createElement("li");
-    let questionOneAnswerFour = document.createElement("li");
+    let questionOneAnswerOne = document.createElement("button");
+    let questionOneAnswerTwo = document.createElement("button");
+    let questionOneAnswerThree = document.createElement("button");
+    let questionOneAnswerFour = document.createElement("button");
 
-    // Now we can assign content to each new element.
+    // Now we can assign content and a class or id to each new element.
     questionOneQuestion.innerText = "this is a test";
-    // document.body.appendChild(questionOneQuestion);
-//  This needs more work
     questionOneQuestion.className = "question-text";
+    document.body.children[1].children[1].appendChild(questionOneQuestion);
+
+
+    // Here we set the text of each button to read the content that is located in the question one object.
+    // The questions on object is declared globally.
+    questionOneAnswerOne.innerText = questionOneObject.answerOne;
+    questionOneAnswerTwo.innerText = questionOneObject.answerTwo;
+    questionOneAnswerThree.innerText = questionOneObject.answerThree;
+    questionOneAnswerFour.innerText = questionOneObject.answerFour;
+
+
+    // Assigning each button the class of quiz-btn to receive the same css style.
+    questionOneAnswerOne.className = "quiz-btn";
+    questionOneAnswerTwo.className = "quiz-btn";
+    questionOneAnswerThree.className = "quiz-btn";
+    questionOneAnswerFour.className = "quiz-btn";
+
+
+    // Now that we have given each new node content and a class of id,
+    // we can add them to the page by appending them.
+    document.body.children[1].children[1].appendChild(questionOneAnswers);
+    document.body.children[1].children[1].children[1].appendChild(questionOneAnswerOne);
+    document.body.children[1].children[1].children[1].appendChild(questionOneAnswerTwo);
+    document.body.children[1].children[1].children[1].appendChild(questionOneAnswerThree);
+    document.body.children[1].children[1].children[1].appendChild(questionOneAnswerFour);
+
+    //  Now lets stat on the logic of card one and if the correct buttons are pushed
+    
 
 
     
