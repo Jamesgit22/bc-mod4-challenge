@@ -29,8 +29,24 @@ function startfunction() {
 
     // First I will hide the start card
     startCard.setAttribute("style", "display: none;");
+}
+ 
 
-    // Next lets use DOM creation to create a new div that has the class of card
+
+
+
+
+
+
+
+
+
+
+
+
+
+function cardOne() {
+// Next lets use DOM creation to create a new div that has the class of card
 
     let questionOneCard = document.createElement("section");
     questionOneCard.className = "card";
