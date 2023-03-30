@@ -30,17 +30,18 @@ function startfunction() {
 
     // Next lets use DOM creation to create a new div that has the class of card
 
-    let questionOneCard = document.createElement("div");
+    let questionOneCard = document.createElement("section");
     questionOneCard.className = "card";
+    questionOneCard.setAttribute("id", "question-one-card");
 
     // Lets append this new element to the html.
 
-    document.body.appendChild(questionOneCard);
+    document.body.children[1].appendChild(questionOneCard);
 
     // Now lets give this new element some children to add content to.
     // Todo this, we first need to creat them and then we can add the content.
 
-    let questionOneContainer = document.createElement("div");
+    // let questionOneContainer = document.createElement("section");
     let questionOneQuestion = document.createElement('h2');
     let questionOneAnswers = document.createElement("ol");
     let questionOneAnswerOne = document.createElement("li");
