@@ -77,6 +77,13 @@ function startfunction() {
     questionOneAnswerThree.className = "quiz-btn";
     questionOneAnswerFour.className = "quiz-btn";
 
+    // I also want to assign each one an id so that I can hook in a click event later.
+
+    questionOneAnswerOne.setAttribute("id", "question-one-click;");
+    questionOneAnswerTwo.setAttribute("id", "question-two-click;");
+    questionOneAnswerThree.setAttribute("id", "question-three-click;");
+    questionOneAnswerFour.setAttribute("id", "question-four-click;");
+
 
     // Now that we have given each new node content and a class of id,
     // we can add them to the page by appending them.
@@ -87,8 +94,21 @@ function startfunction() {
     document.body.children[1].children[1].children[1].appendChild(questionOneAnswerFour);
 
     //  Now lets stat on the logic of card one and if the correct buttons are pushed
-    
+    // TODO: make sure that each button pressed also creates and appends a new html element to the bottom of the card that says correct or wrong.
+    // First lets make some new varibles that will listen for each button being clicked on.
 
+    let questionOneSelectOne = document.getElementById("question-one-click");
+    let questionOneSelectTwo = document.getElementById("question-two-click");
+    let questionOneSelectThree = document.getElementById("question-three-click");
+    let questionOneSelectFour = document.getElementById("question-four-click");
+
+    // Now lets also create an empty variable to store which ever button is pressed.
+
+    let questionOneChosen;
+
+    // Adding listen events logic
+
+    
 
     
 }
