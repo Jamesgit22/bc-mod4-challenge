@@ -1,3 +1,63 @@
+// Before getting to the logic portion, lets create an array that houses each question card data as an object.
+
+const questionOneObject = {
+    question: "Test question 1",
+    answerOne: "Place Holder One",
+    answerTwo: "place holder two",
+    answerThree: "place holder three",
+    answerFour: "correct answer"
+}
+
+const questionTwoObject = {
+    question: "Test question 2",
+    answerOne: "Place Holder One",
+    answerTwo: "place holder two",
+    answerThree: "place holder three",
+    answerFour: "correct answer"
+}
+
+const questionThreeObject = {
+    question: "Test question 3",
+    answerOne: "Place Holder One",
+    answerTwo: "place holder two",
+    answerThree: "place holder three",
+    answerFour: "correct answer"
+}
+
+const questionFourObject = {
+    question: "Test question 4",
+    answerOne: "Place Holder One",
+    answerTwo: "place holder two",
+    answerThree: "place holder three",
+    answerFour: "correct answer"
+}
+
+const questionFiveObject = {
+    question: "Test question 5",
+    answerOne: "Place Holder One",
+    answerTwo: "place holder two",
+    answerThree: "place holder three",
+    answerFour: "correct answer"
+}
+
+
+const questionArray = [questionOneObject, questionTwoObject, questionThreeObject, questionFourObject, questionFiveObject];
+
+
+
+// Now lets also make a function that can be called that increments the array index for the next question.
+
+let arrayIndex = 0;
+let currentQuestion = questionArray[arrayIndex];
+
+function nextQuestionObject() {
+    arrayIndex++;
+    currentQuestion = questionArray[arrayIndex];
+}
+
+
+
+
 // first I want to make a listener event for the start quiz button
 
 // Todo this, I need to make a variable and store the start quiz button in it so that I can make changes to it.
@@ -5,13 +65,7 @@
 const startQuiz = document.getElementById("start-quiz-btn");
 const startCard = document.getElementById("start-card");
 
-const questionOneObject = {
-    name: "questionOne",
-    answerOne: "Place Holder One",
-    answerTwo: "place holder two",
-    answerThree: "place holder three",
-    answerFour: "correct answer"
-}
+
 
 
 // Now I can add a listener event.
@@ -22,13 +76,10 @@ startQuiz.addEventListener("click", startfunction);
 // This function will start the quiz and be called when the start quiz button is clicked
 function startfunction() {
     
-    // Before getting to the logic portion, lets create an object that contains the info for question one.
-
-   
-
-
+    
     // First I will hide the start card
     startCard.setAttribute("style", "display: none;");
+    cardOne();
 }
  
 
@@ -57,6 +108,18 @@ function cardOne() {
     // Creating a visual line break in the code here for quik reference to each card
 
 
+
+
+
+
+
+
+
+
+
+
+
+    
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@ CARD ONE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     // Change: Making the card one its own function outside of start game that can be called.
