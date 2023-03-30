@@ -43,7 +43,7 @@ function startfunction() {
 
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@ CARD ONE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
+    // Change: Making the card one its own function outside of start game that can be called.
 
     document.body.children[1].appendChild(questionOneCard);
 
