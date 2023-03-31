@@ -5,7 +5,7 @@ const questionOneObject = {
     answerOne: "Place Holder One",
     answerTwo: "place holder two",
     answerThree: "place holder three",
-    answerFour: "place holder four" //correct
+    answerFour: "display: none" //correct
 }
 
 const questionTwoObject = {
@@ -28,7 +28,7 @@ const questionFourObject = {
     question: "Test question 4",
     answerOne: "place holder one",
     answerTwo: "place holder two",
-    answerThree: "place holder three",
+    answerThree: "place holder three", //correct
     answerFour: "place holder four"
 }
 
@@ -37,12 +37,14 @@ const questionFiveObject = {
     answerOne: "Place Holder One",
     answerTwo: "place holder two",
     answerThree: "place holder three",
-    answerFour: "place holder four"
+    answerFour: "place holder four" //correct
 }
 
 
 const questionArray = [questionOneObject, questionTwoObject, questionThreeObject, questionFourObject, questionFiveObject];
 
+let outcomeMessage;
+// outcomeMessage.setAttribute("id", "outcomeMessage");
 
 
 // Now lets also make a function that can be called that increments the array index for the next question.
@@ -88,16 +90,7 @@ function startfunction() {
     // Once clicked and if correct, run next function call. If wrong, clock -5s, then run next function call
     // nextQuestionObject();
     // assignContent();
-
-
 }
- 
-
-
-
-
-
-
 
 
 
@@ -107,8 +100,6 @@ function startfunction() {
 
 
     // Change: Making the card one its own function outside of start game that can be called.
-
-
 
 function cardOne() {
 // Next lets use innerHTML to create a new div that has the class of card
@@ -128,7 +119,6 @@ let clickedTwo = document.querySelector("#question-two-click");
 let clickedThree = document.querySelector("#question-three-click");
 let clickedFour = document.querySelector("#question-four-click");
 let prompt = document.querySelector(".question-text");
-let correct = currentQuestion.correct;
 
 prompt.innerText = currentQuestion.question;
 clickedOne.innerText = currentQuestion.answerOne;
@@ -137,18 +127,187 @@ clickedThree.innerText = currentQuestion.answerThree;
 clickedFour.innerText = currentQuestion.answerFour;
 }
 
-// function checkAnswer() {
-
     // If the user selection matches 
     let whatWasClicked = document.querySelector("#card-container");
 
     whatWasClicked.addEventListener("click", function(e){
         let userChoice = e.target.innerText;
 
-        if (arrayIndex = "0" && userChoice === questionOneObject.answerFour) {
+        
+        if (arrayIndex === 0 && userChoice === questionOneObject.answerFour) {
             console.log("yay");
-        } 
-        else {
+            outcomeMessage = document.createElement("h3");
+            outcomeMessage.innerText = "Correct";
+            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
+            document.body.children[1].children[1].appendChild(outcomeMessage);
+            
+            setTimeout(() => {
+                outcomeMessage.innerHTML = "";
+                outcomeMessage.setAttribute("style", "border-top: none;");
+            }, 1000);
+            
+            nextQuestionObject();
+            assignContent();
+            console.log(arrayIndex);
+            
+          
+            return;
+
+        } else if (arrayIndex === 0 && userChoice !== questionOneObject.answerFour) {
             console.log("wrong");
+
+            let wrongMessage = document.createElement("h3");
+            wrongMessage.innerText = "Wrong";
+            wrongMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
+            document.body.children[1].children[1].appendChild(wrongMessage);
+
+            // Need to set penalty to global countdown
+
+            setTimeout(() => {
+                outcomeMessage.innerHTML = "";
+                outcomeMessage.setAttribute("style", "border-top: none;");
+            }, 1000);
+            return;
+            
+        } else if (arrayIndex === 1 && userChoice === questionOneObject.answerTwo) {
+            console.log("yay");
+            let outcomeMessage = document.createElement("h3");
+            outcomeMessage.innerText = "Correct";
+            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
+            document.body.children[1].children[1].appendChild(outcomeMessage);
+            
+            setTimeout(() => {
+                outcomeMessage.innerHTML = "";
+                outcomeMessage.setAttribute("style", "border-top: none;");
+            }, 1000);
+
+            nextQuestionObject();
+            assignContent();
+            console.log(arrayIndex);
+            return;
+
+        } else if (arrayIndex === 1 && userChoice !== questionOneObject.answerTwo) {
+            console.log("wrong");
+
+            outcomeMessage = document.createElement("h3");
+            outcomeMessage.innerText = "Wrong";
+            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
+            document.body.children[1].children[1].appendChild(outcomeMessage);
+
+            setTimeout(() => {
+                outcomeMessage.innerHTML = "";
+                outcomeMessage.setAttribute("style", "border-top: none;");
+            }, 1000);
+
+            // Need to set penalty to global countdown
+
+            nextQuestionObject();
+            assignContent();
+
+        } else if (arrayIndex === 2 && userChoice === questionOneObject.answerOne) {
+            console.log("yay");
+            let outcomeMessage = document.createElement("h3");
+            outcomeMessage.innerText = "Correct";
+            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
+            document.body.children[1].children[1].appendChild(outcomeMessage);
+            
+            setTimeout(() => {
+                outcomeMessage.innerHTML = "";
+                outcomeMessage.setAttribute("style", "border-top: none;");
+            }, 1000);
+
+            nextQuestionObject();
+            assignContent();
+            console.log(arrayIndex);
+            return;
+
+        } else if (arrayIndex === 2 && userChoice !== questionOneObject.answerOne) {
+            console.log("wrong");
+
+            outcomeMessage = document.createElement("h3");
+            outcomeMessage.innerText = "Wrong";
+            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
+            document.body.children[1].children[1].appendChild(outcomeMessage);
+
+            setTimeout(() => {
+                outcomeMessage.innerHTML = "";
+                outcomeMessage.setAttribute("style", "border-top: none;");
+            }, 1000);
+
+            // Need to set penalty to global countdown
+
+            nextQuestionObject();
+            assignContent();
+
+        } else if (arrayIndex === 3 && userChoice === questionOneObject.answerThree) {
+            console.log("yay");
+            let outcomeMessage = document.createElement("h3");
+            outcomeMessage.innerText = "Correct";
+            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
+            document.body.children[1].children[1].appendChild(outcomeMessage);
+            
+            setTimeout(() => {
+                outcomeMessage.innerHTML = "";
+                outcomeMessage.setAttribute("style", "border-top: none;");
+            }, 1000);
+
+            nextQuestionObject();
+            assignContent();
+            console.log(arrayIndex);
+            return;
+
+        } else if (arrayIndex === 3 && userChoice !== questionOneObject.answerThree) {
+            console.log("wrong");
+
+            outcomeMessage = document.createElement("h3");
+            outcomeMessage.innerText = "Wrong";
+            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
+            document.body.children[1].children[1].appendChild(outcomeMessage);
+
+            setTimeout(() => {
+                outcomeMessage.innerHTML = "";
+                outcomeMessage.setAttribute("style", "border-top: none;");
+            }, 1000);
+
+            // Need to set penalty to global countdown
+
+            nextQuestionObject();
+            assignContent();
+        } else if (arrayIndex === 4 && userChoice === questionOneObject.answerFour) {
+            console.log("yay");
+            let outcomeMessage = document.createElement("h3");
+            outcomeMessage.innerText = "Correct";
+            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
+            document.body.children[1].children[1].appendChild(outcomeMessage);
+            
+            setTimeout(() => {
+                outcomeMessage.innerHTML = "";
+                outcomeMessage.setAttribute("style", "border-top: none;");
+            }, 1000);
+
+            nextQuestionObject();
+            assignContent();
+            console.log(arrayIndex);
+            return;
+
+        } else if (arrayIndex === 4 && userChoice !== questionOneObject.answerFour) {
+            console.log("wrong");
+
+            outcomeMessage = document.createElement("h3");
+            outcomeMessage.innerText = "Wrong";
+            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
+            document.body.children[1].children[1].appendChild(outcomeMessage);
+
+            setTimeout(() => {
+                outcomeMessage.innerHTML = "";
+                outcomeMessage.setAttribute("style", "border-top: none;");
+            }, 1000);
+
+            // Need to set penalty to global countdown
+
+            nextQuestionObject();
+            assignContent();
         }
-    });   
+ });   
+
+   
