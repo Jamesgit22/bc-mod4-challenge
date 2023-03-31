@@ -51,6 +51,8 @@ let outcomeMessage;
 
 let arrayIndex = 0;
 let currentQuestion = questionArray[arrayIndex];
+let timer = document.querySelector("#time-span");
+let time = 70;
 
 function nextQuestionObject() {
     arrayIndex++;
@@ -74,12 +76,12 @@ const startCard = document.getElementById("start-card");
 
 startQuiz.addEventListener("click", startfunction);
 
-
 // This function will start the quiz and be called when the start quiz button is clicked
 function startfunction() {
+
+    countDown();
     
-    
-    // First I will hide the start card
+    // next I will hide the start card
     startCard.setAttribute("style", "display: none;");
 
     // Now I can call the first card. This first card will be used to create the html template for all other questions. Other questions will just replace the content of each html element with object data.
@@ -127,6 +129,16 @@ clickedThree.innerText = currentQuestion.answerThree;
 clickedFour.innerText = currentQuestion.answerFour;
 }
 
+
+function countDown() {
+    setInterval(() => {
+        time--;
+        timer.textContent = time;
+    }, 1000);
+}
+    
+
+
     // If the user selection matches 
     let whatWasClicked = document.querySelector("#card-container");
 
@@ -161,7 +173,7 @@ clickedFour.innerText = currentQuestion.answerFour;
             wrongMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
             document.body.children[1].children[1].appendChild(wrongMessage);
 
-            // Need to set penalty to global countdown
+            // time = time - 5;
 
             setTimeout(() => {
                 outcomeMessage.innerHTML = "";
