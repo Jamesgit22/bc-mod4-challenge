@@ -171,118 +171,42 @@ function gameOver() {
 
         
         if (arrayIndex === 0 && userChoice === questionOneObject.answerFour) {
-            outcomeMessage = document.createElement("h3");
-            outcomeMessage.innerText = "Correct";
-            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[0].appendChild(outcomeMessage);
-            
-            setTimeout(() => {
-                outcomeMessage.innerHTML = "";
-                outcomeMessage.setAttribute("style", "border-top: none;");
-            }, 1000);
-            
+            correctMessage()
             nextQuestionObject();
             assignContent();
-            console.log(arrayIndex);
             return;
             
         } else if (arrayIndex === 1 && userChoice === questionTwoObject.answerTwo) {
-            outcomeMessage = document.createElement("h3");
-            outcomeMessage.innerText = "Correct";
-            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[0].appendChild(outcomeMessage);
-            
-            setTimeout(() => {
-                outcomeMessage.innerHTML = "";
-                outcomeMessage.setAttribute("style", "border-top: none;");
-            }, 1000);
-
+            correctMessage()
             nextQuestionObject();
             assignContent();
-            console.log(arrayIndex);
             return;
 
         } else if (arrayIndex === 2 && userChoice === questionThreeObject.answerOne) {
-            outcomeMessage = document.createElement("h3");
-            outcomeMessage.innerText = "Correct";
-            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[0].appendChild(outcomeMessage);
-            
-            setTimeout(() => {
-                outcomeMessage.innerHTML = "";
-                outcomeMessage.setAttribute("style", "border-top: none;");
-            }, 1000);
-
+            correctMessage()
             nextQuestionObject();
             assignContent();
-            console.log(arrayIndex);
             return;
 
         } else if (arrayIndex === 3 && userChoice === questionFourObject.answerThree) {
-            outcomeMessage = document.createElement("h3");
-            outcomeMessage.innerText = "Correct";
-            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[0].appendChild(outcomeMessage);
-            
-            setTimeout(() => {
-                outcomeMessage.innerHTML = "";
-                outcomeMessage.setAttribute("style", "border-top: none;");
-            }, 1000);
-
+            correctMessage();
             nextQuestionObject();
             assignContent();
             console.log(arrayIndex);
             return;
         
         } else if (arrayIndex === 4 && userChoice === questionFiveObject.answerFour) {
-            outcomeMessage = document.createElement("h3");
-            outcomeMessage.innerText = "Correct";
-            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[0].appendChild(outcomeMessage);
-            
-            setTimeout(() => {
-                outcomeMessage.innerHTML = "";
-                outcomeMessage.setAttribute("style", "border-top: none;");
-            }, 1000);
-
+            correctMessage();
             gameDone = true;
             return;
         
         } else if (arrayIndex === 4 && userChoice !== questionFiveObject.answerFour){ 
-            outcomeMessage = document.createElement("h3");
-            outcomeMessage.innerText = "Wrong";
-            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[0].appendChild(outcomeMessage);
-
-            setTimeout(() => {
-                outcomeMessage.innerHTML = "";
-                outcomeMessage.setAttribute("style", "border-top: none;");
-            }, 1000);
-
-            time = time - 10;
+            wrongMessage()
             gameDone = true;
             return;
 
-            // include a condition that checks if array index is 4. if so than dont try to call another card. Instead call the end screen
-
-            nextQuestionObject();
-            assignContent();
-                return;
         } else {
-            outcomeMessage = document.createElement("h3");
-            outcomeMessage.innerText = "Wrong";
-            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[0].appendChild(outcomeMessage);
-
-            setTimeout(() => {
-                outcomeMessage.innerHTML = "";
-                outcomeMessage.setAttribute("style", "border-top: none;");
-            }, 1000);
-
-            time = time - 10;
-
-            // include a condition that checks if array index is 4. if so than dont try to call another card. Instead call the end screen
-
+            wrongMessage();
             nextQuestionObject();
             assignContent();
                 return;
@@ -290,3 +214,28 @@ function gameOver() {
  });   
 
    
+function correctMessage() {
+    outcomeMessage = document.createElement("h3");
+    outcomeMessage.innerText = "Correct";
+    outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
+    document.body.children[1].children[0].appendChild(outcomeMessage);
+    
+    setTimeout(() => {
+        outcomeMessage.innerHTML = "";
+        outcomeMessage.setAttribute("style", "border-top: none;");
+    }, 1000);
+}
+
+function wrongMessage() {
+    outcomeMessage = document.createElement("h3");
+            outcomeMessage.innerText = "Wrong";
+            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
+            document.body.children[1].children[0].appendChild(outcomeMessage);
+
+            setTimeout(() => {
+                outcomeMessage.innerHTML = "";
+                outcomeMessage.setAttribute("style", "border-top: none;");
+            }, 1000);
+
+            time = time - 10;
+}
