@@ -52,38 +52,15 @@ let score = 0;
 let nIntervId;
 let gameDone;
 
-
-// Now lets also make a function that can be called that increments the array index for the next question.
-function nextQuestionObject() {
-    arrayIndex++;
-    currentQuestion = questionArray[arrayIndex];
-}
-
-
-// Next I want to make a listener event for the start quiz button
-
-// Todo this, I need to make a variable and store the start quiz button in it so that I can make changes to it.
-
-
+//Listens for the start button to start the game
 const startQuiz = document.getElementById("start-quiz-btn");
 const startCard = document.getElementById("start-card");
-
-
-// Now I can add a listener event.
-
 startQuiz.addEventListener("click", startfunction);
-
-// This function will start the quiz and be called when the start quiz button is clicked
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@StarGame@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
 function startfunction() {
-    // Start Timer
-    let globalTime = setInterval(countDown,1000);
-
+    let globalTime = setInterval(countDown,1000); // Start Timer
     function countDown() {
         time--;
         document.querySelector("#time-span").innerText = time;
-
         if (time <= 0 || gameDone === true) {
             clearInterval(globalTime);
             score = time;
@@ -92,28 +69,16 @@ function startfunction() {
             }
             gameOver();
         }
-
     }
-
-    // next I will hide the start card
-   
     cardOne();
     assignContent();
     let removeStartCard = document.querySelector("#start-card");
     removeStartCard.remove();
 }
 
-// Functions for Timer...
-
-
-
-
-// Now I can call the first card. This first card will be used to create the html template for all other questions. Other questions will just replace the content of each html element with object data.
+// Creates the card container.
 
 function cardOne() {
-
-// Next lets use innerHTML to create a new div that has the class of card
-
 document.body.children[1].children[1].innerHTML = `<h2 class="question-text"></h2>
 <div class="question-div">
     <button class="quiz-btn correct-click" id="question-one-click"></button>
@@ -123,6 +88,7 @@ document.body.children[1].children[1].innerHTML = `<h2 class="question-text"></h
 </div>`;
 }
 
+// Assigns content from array of question objects to the card container
 function assignContent() {
 let clickedOne = document.querySelector("#question-one-click");
 let clickedTwo = document.querySelector("#question-two-click");
@@ -130,44 +96,18 @@ let clickedThree = document.querySelector("#question-three-click");
 let clickedFour = document.querySelector("#question-four-click");
 let prompt = document.querySelector(".question-text");
 
-
 prompt.innerText = currentQuestion.question;
 clickedOne.innerText = currentQuestion.answerOne;
 clickedTwo.innerText = currentQuestion.answerTwo;
 clickedThree.innerText = currentQuestion.answerThree;
 clickedFour.innerText = currentQuestion.answerFour;
-
 }
 
-// A function that clears the content of the card container div and adds the end screen form to submit intials and display score.
-
-
-// TODO: include a condition that checks if time is at 0. If it is, call the end screen form
-
-
-function gameOver() {
-    
-            score = time;
-            // document.body.children[1].children[1].innerHTML = "";
-            document.body.children[1].children[0].innerHTML = `<h2 id="game-over-card">All done!</h2>
-            <p id="score-p">Your final score is: <span id="span-score"></span></p>
-            <div id="initials-form">
-            <p>Enter initials:</p>
-            <input type="text" id="initials">
-            <button id="submit-score-btn">Submit</button>
-            </div>`;
-
-            // timer = (score <= 0 ? score : 0);
-            document.querySelector("#time-span").textContent = "0";
-            document.querySelector("#span-score").textContent = score;
-}
-
-
-    // Check if the button the user clicked is correct
+    // Checks if the button the user clicked is correct
     let whatWasClicked = document.querySelector("#card-container");
-
     whatWasClicked.addEventListener("click", function(e){
         let userChoice = e.target.innerText;
+        e.stopPropagation();
 
         
         if (arrayIndex === 0 && userChoice === questionOneObject.answerFour) {
@@ -197,12 +137,12 @@ function gameOver() {
         
         } else if (arrayIndex === 4 && userChoice === questionFiveObject.answerFour) {
             correctMessage();
-            gameDone = true;
+            gameDone = true; //Ends the game after the last question is answered
             return;
         
         } else if (arrayIndex === 4 && userChoice !== questionFiveObject.answerFour){ 
             wrongMessage()
-            gameDone = true;
+            gameDone = true; //Ends the game after the last question is answered
             return;
 
         } else {
@@ -213,29 +153,47 @@ function gameOver() {
         }
  });   
 
-   
+//Message that is displayed if the user clicks the correct answer
 function correctMessage() {
     outcomeMessage = document.createElement("h3");
     outcomeMessage.innerText = "Correct";
     outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
     document.body.children[1].children[0].appendChild(outcomeMessage);
-    
     setTimeout(() => {
         outcomeMessage.innerHTML = "";
         outcomeMessage.setAttribute("style", "border-top: none;");
     }, 1000);
 }
-
+//Message that is displayed if the user clicks the wrong answer
 function wrongMessage() {
     outcomeMessage = document.createElement("h3");
-            outcomeMessage.innerText = "Wrong";
-            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[0].appendChild(outcomeMessage);
+    outcomeMessage.innerText = "Wrong";
+    outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
+    document.body.children[1].children[0].appendChild(outcomeMessage);
+    setTimeout(() => {
+        outcomeMessage.innerHTML = "";
+        outcomeMessage.setAttribute("style", "border-top: none;");
+    }, 1000);
+    time = time - 10;
+}
 
-            setTimeout(() => {
-                outcomeMessage.innerHTML = "";
-                outcomeMessage.setAttribute("style", "border-top: none;");
-            }, 1000);
+// Goes to the next question to load the data
+function nextQuestionObject() {
+    arrayIndex++;
+    currentQuestion = questionArray[arrayIndex];
+}
 
-            time = time - 10;
+// Stops the game and displays the end screen to submit score
+function gameOver() {   
+    score = time;
+    document.body.children[1].children[0].innerHTML = ``;
+    document.body.children[1].children[0].innerHTML = `<h2 id="game-over-card">All done!</h2>
+    <p id="score-p">Your final score is: <span id="span-score"></span></p>
+    <div id="initials-form">
+    <p>Enter initials:</p>
+    <input type="text" id="initials">
+    <button id="submit-score-btn">Submit</button>
+    </div>`;
+    document.querySelector("#time-span").textContent = "0";
+    document.querySelector("#span-score").textContent = score;
 }
