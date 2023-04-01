@@ -47,7 +47,7 @@ let outcomeMessage;
 let arrayIndex = 0;
 let currentQuestion = questionArray[arrayIndex];
 let timer = document.querySelector("#time-span");
-let time = 1;
+let time = 100;
 let score = 0;
 let nIntervId;
 let gameDone;
@@ -96,9 +96,11 @@ function startfunction() {
     }
 
     // next I will hide the start card
-    startCard.setAttribute("style", "display: none;");
+   
     cardOne();
     assignContent();
+    let removeStartCard = document.querySelector("#start-card");
+    removeStartCard.remove();
 }
 
 // Functions for Timer...
@@ -128,11 +130,13 @@ let clickedThree = document.querySelector("#question-three-click");
 let clickedFour = document.querySelector("#question-four-click");
 let prompt = document.querySelector(".question-text");
 
+
 prompt.innerText = currentQuestion.question;
 clickedOne.innerText = currentQuestion.answerOne;
 clickedTwo.innerText = currentQuestion.answerTwo;
 clickedThree.innerText = currentQuestion.answerThree;
 clickedFour.innerText = currentQuestion.answerFour;
+
 }
 
 // A function that clears the content of the card container div and adds the end screen form to submit intials and display score.
@@ -144,8 +148,8 @@ clickedFour.innerText = currentQuestion.answerFour;
 function gameOver() {
     
             score = time;
-            document.body.children[1].children[1].innerHTML = "";
-            document.body.children[1].children[1].innerHTML = `<h2 id="game-over-card">All done!</h2>
+            // document.body.children[1].children[1].innerHTML = "";
+            document.body.children[1].children[0].innerHTML = `<h2 id="game-over-card">All done!</h2>
             <p id="score-p">Your final score is: <span id="span-score"></span></p>
             <div id="initials-form">
             <p>Enter initials:</p>
@@ -170,7 +174,7 @@ function gameOver() {
             outcomeMessage = document.createElement("h3");
             outcomeMessage.innerText = "Correct";
             outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[1].appendChild(outcomeMessage);
+            document.body.children[1].children[0].appendChild(outcomeMessage);
             
             setTimeout(() => {
                 outcomeMessage.innerHTML = "";
@@ -186,7 +190,7 @@ function gameOver() {
             outcomeMessage = document.createElement("h3");
             outcomeMessage.innerText = "Correct";
             outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[1].appendChild(outcomeMessage);
+            document.body.children[1].children[0].appendChild(outcomeMessage);
             
             setTimeout(() => {
                 outcomeMessage.innerHTML = "";
@@ -202,7 +206,7 @@ function gameOver() {
             outcomeMessage = document.createElement("h3");
             outcomeMessage.innerText = "Correct";
             outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[1].appendChild(outcomeMessage);
+            document.body.children[1].children[0].appendChild(outcomeMessage);
             
             setTimeout(() => {
                 outcomeMessage.innerHTML = "";
@@ -218,7 +222,7 @@ function gameOver() {
             outcomeMessage = document.createElement("h3");
             outcomeMessage.innerText = "Correct";
             outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[1].appendChild(outcomeMessage);
+            document.body.children[1].children[0].appendChild(outcomeMessage);
             
             setTimeout(() => {
                 outcomeMessage.innerHTML = "";
@@ -234,7 +238,7 @@ function gameOver() {
             outcomeMessage = document.createElement("h3");
             outcomeMessage.innerText = "Correct";
             outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[1].appendChild(outcomeMessage);
+            document.body.children[1].children[0].appendChild(outcomeMessage);
             
             setTimeout(() => {
                 outcomeMessage.innerHTML = "";
@@ -244,11 +248,31 @@ function gameOver() {
             gameDone = true;
             return;
         
+        } else if (arrayIndex === 4 && userChoice !== questionFiveObject.answerFour){ 
+            outcomeMessage = document.createElement("h3");
+            outcomeMessage.innerText = "Wrong";
+            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
+            document.body.children[1].children[0].appendChild(outcomeMessage);
+
+            setTimeout(() => {
+                outcomeMessage.innerHTML = "";
+                outcomeMessage.setAttribute("style", "border-top: none;");
+            }, 1000);
+
+            time = time - 10;
+            gameDone = true;
+            return;
+
+            // include a condition that checks if array index is 4. if so than dont try to call another card. Instead call the end screen
+
+            nextQuestionObject();
+            assignContent();
+                return;
         } else {
             outcomeMessage = document.createElement("h3");
             outcomeMessage.innerText = "Wrong";
             outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[1].appendChild(outcomeMessage);
+            document.body.children[1].children[0].appendChild(outcomeMessage);
 
             setTimeout(() => {
                 outcomeMessage.innerHTML = "";
