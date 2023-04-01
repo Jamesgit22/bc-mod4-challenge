@@ -47,9 +47,10 @@ let outcomeMessage;
 let arrayIndex = 0;
 let currentQuestion = questionArray[arrayIndex];
 let timer = document.querySelector("#time-span");
-let time = 5;
+let time = 100;
 let score = 0;
 let nIntervId;
+let gameDone;
 
 
 // Now lets also make a function that can be called that increments the array index for the next question.
@@ -83,7 +84,7 @@ function startfunction() {
         time--;
         document.querySelector("#time-span").innerText = time;
 
-        if (time <= 0) {
+        if (time <= 0 || gameDone === true) {
             clearInterval(globalTime);
             score = time;
             if (score < 0) {
@@ -103,7 +104,6 @@ function startfunction() {
 // Functions for Timer...
 
 
-    
 
 
 // Now I can call the first card. This first card will be used to create the html template for all other questions. Other questions will just replace the content of each html element with object data.
@@ -182,8 +182,8 @@ function gameOver() {
             console.log(arrayIndex);
             return;
             
-        } else if (arrayIndex === 1 && userChoice === questionOneObject.answerTwo) {
-            let outcomeMessage = document.createElement("h3");
+        } else if (arrayIndex === 1 && userChoice === questionTwoObject.answerTwo) {
+            outcomeMessage = document.createElement("h3");
             outcomeMessage.innerText = "Correct";
             outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
             document.body.children[1].children[1].appendChild(outcomeMessage);
@@ -198,8 +198,8 @@ function gameOver() {
             console.log(arrayIndex);
             return;
 
-        } else if (arrayIndex === 2 && userChoice === questionOneObject.answerOne) {
-            let outcomeMessage = document.createElement("h3");
+        } else if (arrayIndex === 2 && userChoice === questionThreeObject.answerOne) {
+            outcomeMessage = document.createElement("h3");
             outcomeMessage.innerText = "Correct";
             outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
             document.body.children[1].children[1].appendChild(outcomeMessage);
@@ -214,8 +214,8 @@ function gameOver() {
             console.log(arrayIndex);
             return;
 
-        } else if (arrayIndex === 3 && userChoice === questionOneObject.answerThree) {
-            let outcomeMessage = document.createElement("h3");
+        } else if (arrayIndex === 3 && userChoice === questionFourObject.answerThree) {
+            outcomeMessage = document.createElement("h3");
             outcomeMessage.innerText = "Correct";
             outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
             document.body.children[1].children[1].appendChild(outcomeMessage);
@@ -230,8 +230,8 @@ function gameOver() {
             console.log(arrayIndex);
             return;
         
-        } else if (arrayIndex === 4 && userChoice === questionOneObject.answerFour) {
-            let outcomeMessage = document.createElement("h3");
+        } else if (arrayIndex === 4 && userChoice === questionFiveObject.answerFour) {
+            outcomeMessage = document.createElement("h3");
             outcomeMessage.innerText = "Correct";
             outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
             document.body.children[1].children[1].appendChild(outcomeMessage);
@@ -241,8 +241,7 @@ function gameOver() {
                 outcomeMessage.setAttribute("style", "border-top: none;");
             }, 1000);
 
-            clearInterval(globalTime);
-            score = time;
+            gameDone = true;
             return;
         
         } else {
