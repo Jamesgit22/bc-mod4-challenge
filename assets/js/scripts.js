@@ -47,7 +47,7 @@ let outcomeMessage;
 let arrayIndex = 0;
 let currentQuestion = questionArray[arrayIndex];
 let timer = document.querySelector("#time-span");
-let time = 70;
+let time = 30;
 
 
 // Now lets also make a function that can be called that increments the array index for the next question.
@@ -118,7 +118,18 @@ clickedThree.innerText = currentQuestion.answerThree;
 clickedFour.innerText = currentQuestion.answerFour;
 }
 
+// A function that clears the content of the card container div and adds the end screen form to submit intials and display score.
 
+function gameOver() {
+    let score = time;
+    document.body.children[1].children[1].innerHTML = `<h2 id="game-over-card">All done!</h2>
+    <p id="score-p">Your final score is <span id="span-score"></span></p>
+    <div id="initials-form">
+        <p>Enter initials:</p>
+        <input type="text" id="initials">
+        <button id="submit-score-btn">Submit</button>
+    </div>`;
+}
 
 // TODO: include a condition that checks if time is at 0. If it is, call the end screen form
 
@@ -238,3 +249,7 @@ clickedFour.innerText = currentQuestion.answerFour;
  });   
 
    
+ if (time == 0) {
+    gameOver();
+    console.log(time);
+}
