@@ -44,32 +44,26 @@ const questionFiveObject = {
 const questionArray = [questionOneObject, questionTwoObject, questionThreeObject, questionFourObject, questionFiveObject];
 
 let outcomeMessage;
-// outcomeMessage.setAttribute("id", "outcomeMessage");
-
-
-// Now lets also make a function that can be called that increments the array index for the next question.
-
 let arrayIndex = 0;
 let currentQuestion = questionArray[arrayIndex];
 let timer = document.querySelector("#time-span");
 let time = 70;
 
+
+// Now lets also make a function that can be called that increments the array index for the next question.
 function nextQuestionObject() {
     arrayIndex++;
     currentQuestion = questionArray[arrayIndex];
 }
 
 
-
-
-// first I want to make a listener event for the start quiz button
+// Next I want to make a listener event for the start quiz button
 
 // Todo this, I need to make a variable and store the start quiz button in it so that I can make changes to it.
 
+
 const startQuiz = document.getElementById("start-quiz-btn");
 const startCard = document.getElementById("start-card");
-
-
 
 
 // Now I can add a listener event.
@@ -78,32 +72,27 @@ startQuiz.addEventListener("click", startfunction);
 
 // This function will start the quiz and be called when the start quiz button is clicked
 function startfunction() {
-
     countDown();
-    
     // next I will hide the start card
     startCard.setAttribute("style", "display: none;");
-
-    // Now I can call the first card. This first card will be used to create the html template for all other questions. Other questions will just replace the content of each html element with object data.
     cardOne();
     assignContent();
-
-    // logic to check answer
-    // Once clicked and if correct, run next function call. If wrong, clock -5s, then run next function call
-    // nextQuestionObject();
-    // assignContent();
 }
 
 
+// Global timer 
+function countDown() {
+    setInterval(() => {
+        time--;
+        timer.textContent = time;
+    }, 1000);
+}
 
 
-
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ CARD ONE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-    // Change: Making the card one its own function outside of start game that can be called.
+// Now I can call the first card. This first card will be used to create the html template for all other questions. Other questions will just replace the content of each html element with object data.
 
 function cardOne() {
+
 // Next lets use innerHTML to create a new div that has the class of card
 
 document.body.children[1].children[1].innerHTML = `<h2 class="question-text"></h2>
@@ -130,16 +119,12 @@ clickedFour.innerText = currentQuestion.answerFour;
 }
 
 
-function countDown() {
-    setInterval(() => {
-        time--;
-        timer.textContent = time;
-    }, 1000);
-}
-    
+
+// TODO: include a condition that checks if time is at 0. If it is, call the end screen form
 
 
-    // If the user selection matches 
+
+    // Check if the button the user clicked is correct
     let whatWasClicked = document.querySelector("#card-container");
 
     whatWasClicked.addEventListener("click", function(e){
@@ -161,24 +146,6 @@ function countDown() {
             nextQuestionObject();
             assignContent();
             console.log(arrayIndex);
-            
-          
-            return;
-
-        } else if (arrayIndex === 0 && userChoice !== questionOneObject.answerFour) {
-            console.log("wrong");
-
-            let wrongMessage = document.createElement("h3");
-            wrongMessage.innerText = "Wrong";
-            wrongMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[1].appendChild(wrongMessage);
-
-            // time = time - 5;
-
-            setTimeout(() => {
-                outcomeMessage.innerHTML = "";
-                outcomeMessage.setAttribute("style", "border-top: none;");
-            }, 1000);
             return;
             
         } else if (arrayIndex === 1 && userChoice === questionOneObject.answerTwo) {
@@ -198,24 +165,6 @@ function countDown() {
             console.log(arrayIndex);
             return;
 
-        } else if (arrayIndex === 1 && userChoice !== questionOneObject.answerTwo) {
-            console.log("wrong");
-
-            outcomeMessage = document.createElement("h3");
-            outcomeMessage.innerText = "Wrong";
-            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[1].appendChild(outcomeMessage);
-
-            setTimeout(() => {
-                outcomeMessage.innerHTML = "";
-                outcomeMessage.setAttribute("style", "border-top: none;");
-            }, 1000);
-
-            // Need to set penalty to global countdown
-
-            nextQuestionObject();
-            assignContent();
-
         } else if (arrayIndex === 2 && userChoice === questionOneObject.answerOne) {
             console.log("yay");
             let outcomeMessage = document.createElement("h3");
@@ -233,24 +182,6 @@ function countDown() {
             console.log(arrayIndex);
             return;
 
-        } else if (arrayIndex === 2 && userChoice !== questionOneObject.answerOne) {
-            console.log("wrong");
-
-            outcomeMessage = document.createElement("h3");
-            outcomeMessage.innerText = "Wrong";
-            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[1].appendChild(outcomeMessage);
-
-            setTimeout(() => {
-                outcomeMessage.innerHTML = "";
-                outcomeMessage.setAttribute("style", "border-top: none;");
-            }, 1000);
-
-            // Need to set penalty to global countdown
-
-            nextQuestionObject();
-            assignContent();
-
         } else if (arrayIndex === 3 && userChoice === questionOneObject.answerThree) {
             console.log("yay");
             let outcomeMessage = document.createElement("h3");
@@ -267,24 +198,7 @@ function countDown() {
             assignContent();
             console.log(arrayIndex);
             return;
-
-        } else if (arrayIndex === 3 && userChoice !== questionOneObject.answerThree) {
-            console.log("wrong");
-
-            outcomeMessage = document.createElement("h3");
-            outcomeMessage.innerText = "Wrong";
-            outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
-            document.body.children[1].children[1].appendChild(outcomeMessage);
-
-            setTimeout(() => {
-                outcomeMessage.innerHTML = "";
-                outcomeMessage.setAttribute("style", "border-top: none;");
-            }, 1000);
-
-            // Need to set penalty to global countdown
-
-            nextQuestionObject();
-            assignContent();
+        
         } else if (arrayIndex === 4 && userChoice === questionOneObject.answerFour) {
             console.log("yay");
             let outcomeMessage = document.createElement("h3");
@@ -301,10 +215,8 @@ function countDown() {
             assignContent();
             console.log(arrayIndex);
             return;
-
-        } else if (arrayIndex === 4 && userChoice !== questionOneObject.answerFour) {
-            console.log("wrong");
-
+        
+        } else {
             outcomeMessage = document.createElement("h3");
             outcomeMessage.innerText = "Wrong";
             outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
@@ -315,10 +227,13 @@ function countDown() {
                 outcomeMessage.setAttribute("style", "border-top: none;");
             }, 1000);
 
-            // Need to set penalty to global countdown
+            time = time - 10;
+
+            // include a condition that checks if array index is 4. if so than dont try to call another card. Instead call the end screen
 
             nextQuestionObject();
             assignContent();
+                return;
         }
  });   
 
