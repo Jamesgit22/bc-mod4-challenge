@@ -47,7 +47,9 @@ let outcomeMessage;
 let arrayIndex = 0;
 let currentQuestion = questionArray[arrayIndex];
 let timer = document.querySelector("#time-span");
-let time = 30;
+let time = 5;
+let score = 0;
+let nIntervId;
 
 
 // Now lets also make a function that can be called that increments the array index for the next question.
@@ -71,22 +73,37 @@ const startCard = document.getElementById("start-card");
 startQuiz.addEventListener("click", startfunction);
 
 // This function will start the quiz and be called when the start quiz button is clicked
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@StarGame@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 function startfunction() {
-    countDown();
+    // Start Timer
+    let globalTime = setInterval(countDown,1000);
+
+    function countDown() {
+        time--;
+        document.querySelector("#time-span").innerText = time;
+
+        if (time <= 0) {
+            clearInterval(globalTime);
+            score = time;
+            if (score < 0) {
+                time = 0;
+            }
+            gameOver();
+        }
+
+    }
+
     // next I will hide the start card
     startCard.setAttribute("style", "display: none;");
     cardOne();
     assignContent();
 }
 
+// Functions for Timer...
 
-// Global timer 
-function countDown() {
-    setInterval(() => {
-        time--;
-        timer.textContent = time;
-    }, 1000);
-}
+
+    
 
 
 // Now I can call the first card. This first card will be used to create the html template for all other questions. Other questions will just replace the content of each html element with object data.
@@ -120,19 +137,26 @@ clickedFour.innerText = currentQuestion.answerFour;
 
 // A function that clears the content of the card container div and adds the end screen form to submit intials and display score.
 
-function gameOver() {
-    let score = time;
-    document.body.children[1].children[1].innerHTML = `<h2 id="game-over-card">All done!</h2>
-    <p id="score-p">Your final score is <span id="span-score"></span></p>
-    <div id="initials-form">
-        <p>Enter initials:</p>
-        <input type="text" id="initials">
-        <button id="submit-score-btn">Submit</button>
-    </div>`;
-}
 
 // TODO: include a condition that checks if time is at 0. If it is, call the end screen form
 
+
+function gameOver() {
+    
+            score = time;
+            document.body.children[1].children[1].innerHTML = "";
+            document.body.children[1].children[1].innerHTML = `<h2 id="game-over-card">All done!</h2>
+            <p id="score-p">Your final score is <span id="span-score"></span></p>
+            <div id="initials-form">
+            <p>Enter initials:</p>
+            <input type="text" id="initials">
+            <button id="submit-score-btn">Submit</button>
+            </div>`;
+
+            // timer = (score <= 0 ? score : 0);
+            document.querySelector("#time-span").textContent = "0";
+            document.querySelector("#span-score").textContent = score;
+}
 
 
     // Check if the button the user clicked is correct
@@ -143,7 +167,6 @@ function gameOver() {
 
         
         if (arrayIndex === 0 && userChoice === questionOneObject.answerFour) {
-            console.log("yay");
             outcomeMessage = document.createElement("h3");
             outcomeMessage.innerText = "Correct";
             outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
@@ -160,7 +183,6 @@ function gameOver() {
             return;
             
         } else if (arrayIndex === 1 && userChoice === questionOneObject.answerTwo) {
-            console.log("yay");
             let outcomeMessage = document.createElement("h3");
             outcomeMessage.innerText = "Correct";
             outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
@@ -177,7 +199,6 @@ function gameOver() {
             return;
 
         } else if (arrayIndex === 2 && userChoice === questionOneObject.answerOne) {
-            console.log("yay");
             let outcomeMessage = document.createElement("h3");
             outcomeMessage.innerText = "Correct";
             outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
@@ -194,7 +215,6 @@ function gameOver() {
             return;
 
         } else if (arrayIndex === 3 && userChoice === questionOneObject.answerThree) {
-            console.log("yay");
             let outcomeMessage = document.createElement("h3");
             outcomeMessage.innerText = "Correct";
             outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
@@ -211,7 +231,6 @@ function gameOver() {
             return;
         
         } else if (arrayIndex === 4 && userChoice === questionOneObject.answerFour) {
-            console.log("yay");
             let outcomeMessage = document.createElement("h3");
             outcomeMessage.innerText = "Correct";
             outcomeMessage.setAttribute("style", "color: gray; margin-top: 10px; border-top: 2px solid gray; padding-top: 5px;")
@@ -222,9 +241,8 @@ function gameOver() {
                 outcomeMessage.setAttribute("style", "border-top: none;");
             }, 1000);
 
-            nextQuestionObject();
-            assignContent();
-            console.log(arrayIndex);
+            clearInterval(globalTime);
+            score = time;
             return;
         
         } else {
@@ -249,7 +267,3 @@ function gameOver() {
  });   
 
    
- if (time == 0) {
-    gameOver();
-    console.log(time);
-}
