@@ -47,7 +47,7 @@ let outcomeMessage;
 let arrayIndex = 0;
 let currentQuestion = questionArray[arrayIndex];
 let timer = document.querySelector("#time-span");
-let time = 100;
+let time = 1;
 let score = 0;
 let nIntervId;
 let gameDone;
@@ -146,7 +146,7 @@ function gameOver() {
             score = time;
             document.body.children[1].children[1].innerHTML = "";
             document.body.children[1].children[1].innerHTML = `<h2 id="game-over-card">All done!</h2>
-            <p id="score-p">Your final score is <span id="span-score"></span></p>
+            <p id="score-p">Your final score is: <span id="span-score"></span></p>
             <div id="initials-form">
             <p>Enter initials:</p>
             <input type="text" id="initials">
