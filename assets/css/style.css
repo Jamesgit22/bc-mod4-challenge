@@ -64,3 +64,16 @@ main h2 {
     margin-left: 5px;
     border: 1px solid black;
 }
+
+#highscores-container {
+    margin: 3em auto;
+    width: 40%;
+}
+
+.highscores-btn-class {
+    color: white;
+    background-color: purple;
+    border: 1px solid black;
+    border-radius: 0.3em;
+    margin-top: 10px;
+}

@@ -1,5 +1,4 @@
-// Before getting to the logic portion, lets create an array that houses each question card data as an object.
-
+// An array of objects to use as the questions
 const questionOneObject = {
     question: "Test question 1",
     answerOne: "Place Holder One",
@@ -49,8 +48,12 @@ let currentQuestion = questionArray[arrayIndex];
 let timer = document.querySelector("#time-span");
 let time = 100;
 let score = 0;
+let initials;
+let initialsValue;
 let nIntervId;
 let gameDone;
+// let submitObj;
+// let localStorageArray = [];
 
 //Listens for the start button to start the game
 const startQuiz = document.getElementById("start-quiz-btn");
@@ -132,7 +135,6 @@ clickedFour.innerText = currentQuestion.answerFour;
             correctMessage();
             nextQuestionObject();
             assignContent();
-            console.log(arrayIndex);
             return;
         
         } else if (arrayIndex === 4 && userChoice === questionFiveObject.answerFour) {
@@ -196,4 +198,51 @@ function gameOver() {
     </div>`;
     document.querySelector("#time-span").textContent = "0";
     document.querySelector("#span-score").textContent = score;
+
+    let submitValues = document.querySelector("#submit-score-btn");
+    submitValues.addEventListener("click", function(event) {
+        event.stopPropagation;
+        initials = document.querySelector("#initials");
+        initialsValue = initials.value;
+        // console.log(initialsValue);
+        
+        const highScores = JSON.parse(localStorage.getItem("arrayKey")) || [];
+        highScores.push({initialsValue, score})
+        localStorage.setItem("highscores", JSON.stringify(highScores));
+        
+    });
 }
+
+// // Function to subit the data.
+// function addLocalStorageArray() {
+//     // const submitObj = {
+//     //             initials: initialsValue,
+//     //             score: score
+//     //         }
+//     const highScores = JSON.parse(localStorage.getItem("arrayKey")) || [];
+//     highScores.push({initialsValue, score})
+//     localStorage.setItem("highscores", JSON.stringify(highScores));
+
+    
+//     }
+    
+
+
+
+
+// function addLocalStorageArray() {
+//     submitObj = {
+//         initials: initialsValue,
+//         score: score
+//     }
+//     const jsonObj = JSON.stringify(submitObj);
+//     const highScores = JSON.parse(localStorage.getItem("arrayKey")) || [];
+//     highScores.push(jsonObj);
+//     // const jsonArray = JSON.stringify(localStorageArray);
+//     // console.log(localStorageArray);    
+//     localStorage.setItem("arrayKey", JSON.stringify(highScores));
+// }
+
+
+// Retreive and append highscores from local storage
+
