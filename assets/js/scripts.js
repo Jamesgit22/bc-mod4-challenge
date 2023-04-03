@@ -45,7 +45,7 @@ let outcomeMessage;
 let arrayIndex = 0;
 let currentQuestion = questionArray[arrayIndex];
 let timer = document.querySelector("#time-span");
-let time = 1;
+let time = 60;
 let score = 0;
 let initials;
 let initialsValue;
