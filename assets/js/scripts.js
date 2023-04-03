@@ -1,42 +1,42 @@
 // A list of objects to use as the questions
 const questionOneObject = {
-    question: "Test question 1",
-    answerOne: "Place Holder One",
-    answerTwo: "place holder two",
-    answerThree: "place holder three",
-    answerFour: "display: none" //correct
+    question: "Which of the following will not make a string?",
+    answerOne: "1. \"string\"",
+    answerTwo: "2. `string`",
+    answerThree: "3. 'string'",
+    answerFour: "4. (string)" //correct
 }
 
 const questionTwoObject = {
-    question: "Test question 2",
-    answerOne: "place holder one",  
-    answerTwo: "place holder two", //correct
-    answerThree: "place holder three",
-    answerFour: "Place Holder Four"
+    question: "Which of these is not a keyword to declare a variable?",
+    answerOne: "1. let",  
+    answerTwo: "2. store", //correct
+    answerThree: "3. var",
+    answerFour: "4. const"
 }
 
 const questionThreeObject = {
-    question: "Test question 3",
-    answerOne: "place holder one", //correct
-    answerTwo: "place holder two",
-    answerThree: "place holder three",
-    answerFour: "place holder four"
+    question: "Which line of code will concatenate the stored strings in variableOne and variableTwo?",
+    answerOne: "1. `${variableOne} ${variableTwo}`", //correct
+    answerTwo: "2. '${variableOne} ${variableTwo}'",
+    answerThree: "3. `{variableOne} ${variableTwo}`",
+    answerFour: "4. \"variableOne\" + \"variableTwo\""
 }
 
 const questionFourObject = {
-    question: "Test question 4",
-    answerOne: "place holder one",
-    answerTwo: "place holder two",
-    answerThree: "place holder three", //correct
-    answerFour: "place holder four"
+    question: "Which of the following is not a method to use with an array?",
+    answerOne: "1. array.pop",
+    answerTwo: "2. array.push",
+    answerThree: "3. array.pull", //correct
+    answerFour: "4. array.unshift"
 }
 
 const questionFiveObject = {
-    question: "Test question 5",
-    answerOne: "Place Holder One",
-    answerTwo: "place holder two",
-    answerThree: "place holder three",
-    answerFour: "place holder four" //correct
+    question: "Which of the following is not a possible return value of the typeof method?",
+    answerOne: "1. Symbol",
+    answerTwo: "2. Boolean",
+    answerThree: "3. BigInt",
+    answerFour: "4. Decimal" //correct
 }
 
 const questionArray = [questionOneObject, questionTwoObject, questionThreeObject, questionFourObject, questionFiveObject];
@@ -45,7 +45,7 @@ let outcomeMessage;
 let arrayIndex = 0;
 let currentQuestion = questionArray[arrayIndex];
 let timer = document.querySelector("#time-span");
-let time = 60;
+let time = 50;
 let score = 0;
 let initials;
 let initialsValue;
