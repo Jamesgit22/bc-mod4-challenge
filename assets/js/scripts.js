@@ -1,4 +1,4 @@
-// An array of objects to use as the questions
+// A list of objects to use as the questions
 const questionOneObject = {
     question: "Test question 1",
     answerOne: "Place Holder One",
@@ -39,7 +39,6 @@ const questionFiveObject = {
     answerFour: "place holder four" //correct
 }
 
-
 const questionArray = [questionOneObject, questionTwoObject, questionThreeObject, questionFourObject, questionFiveObject];
 
 let outcomeMessage;
@@ -52,7 +51,6 @@ let initials;
 let initialsValue;
 let nIntervId;
 let gameDone;
-// let submitObj;
 let localStorageArray;
 
 let endScreenContainer = document.querySelector("#end-screen-container");
@@ -114,47 +112,40 @@ clickedFour.innerText = currentQuestion.answerFour;
     whatWasClicked.addEventListener("click", function(e){
         let userChoice = e.target.innerText;
         e.stopPropagation();
-
-        
+       
         if (arrayIndex === 0 && userChoice === questionOneObject.answerFour) {
             correctMessage()
             nextQuestionObject();
             assignContent();
-            return;
-            
+            return;  
         } else if (arrayIndex === 1 && userChoice === questionTwoObject.answerTwo) {
             correctMessage()
             nextQuestionObject();
             assignContent();
             return;
-
         } else if (arrayIndex === 2 && userChoice === questionThreeObject.answerOne) {
             correctMessage()
             nextQuestionObject();
             assignContent();
             return;
-
         } else if (arrayIndex === 3 && userChoice === questionFourObject.answerThree) {
             correctMessage();
             nextQuestionObject();
             assignContent();
-            return;
-        
+            return;       
         } else if (arrayIndex === 4 && userChoice === questionFiveObject.answerFour) {
             correctMessage();
             gameDone = true; //Ends the game after the last question is answered
-            return;
-        
+            return;  
         } else if (arrayIndex === 4 && userChoice !== questionFiveObject.answerFour){ 
             wrongMessage()
             gameDone = true; //Ends the game after the last question is answered
             return;
-
         } else {
             wrongMessage();
             nextQuestionObject();
             assignContent();
-                return;
+            return;
         }
  });   
 
@@ -191,14 +182,6 @@ function nextQuestionObject() {
 // Stops the game and displays the end screen to submit score
 function gameOver() {   
     score = time;
-    // document.body.children[1].children[0].innerHTML = ``;
-    // document.body.children[1].children[0].innerHTML = `<h2 id="game-over-card">All done!</h2>
-    // <p id="score-p">Your final score is: <span id="span-score"></span></p>
-    // <div id="initials-form">
-    // <p>Enter initials:</p>
-    // <input type="text" id="initials">
-    // <button id="submit-score-btn">Submit</button>
-    // </div>`;
     document.querySelector("#time-span").textContent = "0";
     document.querySelector("#span-score").textContent = score;
     let cardContainer = document.querySelector("#card-container");
@@ -210,46 +193,8 @@ function gameOver() {
         event.stopPropagation;
         initials = document.querySelector("#initials");
         initialsValue = initials.value;
-        // console.log(initialsValue);
-        
         const highScores = JSON.parse(localStorage.getItem("highscores")) || [];
-        highScores.push({initialsValue, score})
+        highScores.unshift({initialsValue, score})
         localStorage.setItem("highscores", JSON.stringify(highScores));
-        
-        
     });
 }
-
-// // Function to subit the data.
-// function addLocalStorageArray() {
-//     // const submitObj = {
-//     //             initials: initialsValue,
-//     //             score: score
-//     //         }
-//     const highScores = JSON.parse(localStorage.getItem("arrayKey")) || [];
-//     highScores.push({initialsValue, score})
-//     localStorage.setItem("highscores", JSON.stringify(highScores));
-
-    
-//     }
-    
-
-
-
-
-// function addLocalStorageArray() {
-//     submitObj = {
-//         initials: initialsValue,
-//         score: score
-//     }
-//     const jsonObj = JSON.stringify(submitObj);
-//     const highScores = JSON.parse(localStorage.getItem("arrayKey")) || [];
-//     highScores.push(jsonObj);
-//     // const jsonArray = JSON.stringify(localStorageArray);
-//     // console.log(localStorageArray);    
-//     localStorage.setItem("arrayKey", JSON.stringify(highScores));
-// }
-
-
-// Retreive and append highscores from local storage
-

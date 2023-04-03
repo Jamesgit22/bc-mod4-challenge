@@ -72,8 +72,8 @@ main h2 {
 }
 
 #highscores-container {
-    margin: 3em auto;
-    width: 40%;
+    margin: 15em auto;
+    width: 30%;
 }
 
 .highscores-btn-class {
@@ -83,4 +83,12 @@ main h2 {
     border-radius: 0.3em;
     margin-top: 10px;
     cursor: pointer;
+}
+
+#highscores-list p {
+    padding: 3px 3px;
+}
+
+#highscores-list>:nth-child(even) {
+    background-color: rgba(255, 199, 255, 0.228);
 }

@@ -10,10 +10,10 @@ function retreiveUserObjString() {
     for (let i = 0; i < retrieveQuestionArray.length; i++) {
         let newListItem = document.createElement("p");
         let newObj = retrieveQuestionArray[i];
-        newListItem.textContent = `${newObj.initials} ${"-"} ${newObj.score}`
+        newListItem.textContent = `${newObj.initialsValue} ${"-"} ${newObj.score}`
         newListItem.setAttribute("style", "margin-top: 5px;")
         highScoresList.prepend(newListItem);
-        
+        console.log(newObj);
     }
 }
 
