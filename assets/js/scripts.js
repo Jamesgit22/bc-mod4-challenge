@@ -46,14 +46,17 @@ let outcomeMessage;
 let arrayIndex = 0;
 let currentQuestion = questionArray[arrayIndex];
 let timer = document.querySelector("#time-span");
-let time = 100;
+let time = 1;
 let score = 0;
 let initials;
 let initialsValue;
 let nIntervId;
 let gameDone;
 // let submitObj;
-// let localStorageArray = [];
+let localStorageArray;
+
+let endScreenContainer = document.querySelector("#end-screen-container");
+endScreenContainer.setAttribute("style", "display: none;");
 
 //Listens for the start button to start the game
 const startQuiz = document.getElementById("start-quiz-btn");
@@ -188,16 +191,19 @@ function nextQuestionObject() {
 // Stops the game and displays the end screen to submit score
 function gameOver() {   
     score = time;
-    document.body.children[1].children[0].innerHTML = ``;
-    document.body.children[1].children[0].innerHTML = `<h2 id="game-over-card">All done!</h2>
-    <p id="score-p">Your final score is: <span id="span-score"></span></p>
-    <div id="initials-form">
-    <p>Enter initials:</p>
-    <input type="text" id="initials">
-    <button id="submit-score-btn">Submit</button>
-    </div>`;
+    // document.body.children[1].children[0].innerHTML = ``;
+    // document.body.children[1].children[0].innerHTML = `<h2 id="game-over-card">All done!</h2>
+    // <p id="score-p">Your final score is: <span id="span-score"></span></p>
+    // <div id="initials-form">
+    // <p>Enter initials:</p>
+    // <input type="text" id="initials">
+    // <button id="submit-score-btn">Submit</button>
+    // </div>`;
     document.querySelector("#time-span").textContent = "0";
     document.querySelector("#span-score").textContent = score;
+    let cardContainer = document.querySelector("#card-container");
+    cardContainer.setAttribute("style", "display: none;");
+    endScreenContainer.setAttribute("style", "display: block;");
 
     let submitValues = document.querySelector("#submit-score-btn");
     submitValues.addEventListener("click", function(event) {
@@ -206,9 +212,10 @@ function gameOver() {
         initialsValue = initials.value;
         // console.log(initialsValue);
         
-        const highScores = JSON.parse(localStorage.getItem("arrayKey")) || [];
+        const highScores = JSON.parse(localStorage.getItem("highscores")) || [];
         highScores.push({initialsValue, score})
         localStorage.setItem("highscores", JSON.stringify(highScores));
+        
         
     });
 }
